@@ -1,8 +1,6 @@
 const Koa = require('koa');
 const bodyparser = require('koa-bodyparser')
 const router = require('./routes');
-
-const { deviceInfo, deviceList } = require('./controller')
 const app = new Koa();
 
 app.use(async (ctx, next) => {
@@ -18,6 +16,12 @@ app.use(async (ctx, next) => {
     ctx.set("Content-Type", "application/json;charset=utf-8");
 });
 
+app.use(bodyparser({
+    enableTypes: ['json', 'form', 'text']
+  }))
+
 app.use(router.routes(), router.allowedMethods())
 
-app.listen(2335);
+app.listen(1516);
+
+console.log('oJBk','serve at localhost:'+2335)
